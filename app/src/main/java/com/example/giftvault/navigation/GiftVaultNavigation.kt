@@ -15,7 +15,9 @@ fun GiftVaultNavigation(){
         startDestination =  GiftVaultScreens.LoginScreen.name) {
 
         composable(GiftVaultScreens.LoginScreen.name){
-            LoginScreen(navController = navController)
+            LoginScreen(
+                //navController = navController
+            )
         }
 
 //        composable(MovieScreens.DetailsScreen.name + "/{movie}",
