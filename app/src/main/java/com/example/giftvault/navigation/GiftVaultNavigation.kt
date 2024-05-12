@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.giftvault.screens.HomeScreen
 import com.example.giftvault.screens.LoginScreen
 
 @Composable
@@ -16,6 +17,11 @@ fun GiftVaultNavigation(){
 
         composable(GiftVaultScreens.LoginScreen.name){
             LoginScreen(
+                navController = navController
+            )
+        }
+        composable(GiftVaultScreens.HomeScreen.name){
+            HomeScreen(
                 navController = navController
             )
         }
