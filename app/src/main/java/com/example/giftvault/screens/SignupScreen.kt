@@ -24,7 +24,16 @@ import com.example.giftvault.model.User
 import com.example.giftvault.navigation.GiftVaultScreens
 
 @Composable
-fun LoginScreen(navController: NavController){
+fun SignupScreen(navController: NavController){
+    var firstNameInput by remember {
+        mutableStateOf("")
+    }
+    var lastNameInput by remember {
+        mutableStateOf("")
+    }
+    var emailInput by remember {
+        mutableStateOf("")
+    }
     var usernameInput by remember {
         mutableStateOf("")
     }
@@ -41,18 +50,28 @@ fun LoginScreen(navController: NavController){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text("Greetings!")
+            GiftVaultInputText(text = firstNameInput, label = "Enter first name", onTextChange = { firstNameInput = it })
+            GiftVaultInputText(text = lastNameInput, label = "Enter last name", onTextChange = { lastNameInput = it })
+            GiftVaultInputText(text = emailInput, label = "Enter email", onTextChange = { emailInput = it })
             GiftVaultInputText(text = usernameInput, label = "Enter username", onTextChange = { usernameInput = it })
             GiftVaultInputText(text = passwordInput, label = "Enter password", onTextChange = { passwordInput = it })
             Spacer(modifier = Modifier.height(16.dp))
-            GVButton(text = "Log In", onClick = { handleLogin(usernameInput, navController) })
+            GVButton(text = "Sign Up", onClick = { handleSignup(firstNameInput, lastNameInput, emailInput, usernameInput, passwordInput, navController) })
         }
     }
 }
 
-fun handleLogin(username: String, navController: NavController ) {
-    val user: User? = Users.userList.find { it.username == username }
-    if (user != null) {
-        val userIndex = Users.userList.indexOf(user).toString()  // Convert index to string
+fun handleSignup(
+    firstName: String,
+    lastName: String,
+    email: String,
+    username: String,
+    password: String,
+    navController: NavController
+) {
+    val user: User = User(firstName, lastName, email, username, password);
+    if (Users.userList.add(user)) {
+        val userIndex = Users.userList.indexOf(user).toString()
         navController.navigate(route = GiftVaultScreens.HomeScreen.name + "/$userIndex")
     }
 }
