@@ -1,4 +1,4 @@
-package com.example.giftvault.screens
+package com.example.giftvault.screens.authentication
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.giftvault.components.GVButton
 import com.example.giftvault.components.GiftVaultInputText
+import com.example.giftvault.mockdata.Users
+import com.example.giftvault.model.User
 import com.example.giftvault.navigation.GiftVaultScreens
 import com.example.giftvault.ui.theme.TimberWolf
 
@@ -79,7 +81,15 @@ fun LoginScreen(navController: NavController){
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
-            GVButton(text = "Log In", onClick = { navController.navigate(route = GiftVaultScreens.HomeScreen.name) })
+            GVButton(text = "Log In", onClick = { handleLogin(usernameInput, navController) })
         }
+    }
+}
+
+fun handleLogin(username: String, navController: NavController ) {
+    val user: User? = Users.userList.find { it.username == username }
+    if (user != null) {
+        val userIndex = Users.userList.indexOf(user).toString()  // Convert index to string
+        navController.navigate(route = GiftVaultScreens.HomeScreen.name + "/$userIndex")
     }
 }
