@@ -1,12 +1,13 @@
 package com.example.giftvault.navigation
 
 enum class GiftVaultScreens {
-    LoginScreen;
+    LoginScreen, HomeScreen;
     companion object{
         fun fromRoute(route: String?): GiftVaultScreens
         = when (route?.substringBefore("/")){
             LoginScreen.name -> LoginScreen
-            null -> LoginScreen
+            HomeScreen.name -> HomeScreen
+            null -> HomeScreen
             else -> throw IllegalArgumentException("Route $route is not recognized")
         }
     }

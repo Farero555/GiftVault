@@ -10,7 +10,6 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun HomeScreen(){
     TopAppBar(
-        modifier = ,
         title = {
 
             Text("GiftVault")

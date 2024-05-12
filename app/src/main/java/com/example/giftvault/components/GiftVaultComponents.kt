@@ -83,7 +83,7 @@ fun GiftVaultInputText(
 }
 
 @Composable
-fun NoteButton(
+fun GVButton(
     modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit,

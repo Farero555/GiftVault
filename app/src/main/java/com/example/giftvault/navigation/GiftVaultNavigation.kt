@@ -16,7 +16,7 @@ fun GiftVaultNavigation(){
 
         composable(GiftVaultScreens.LoginScreen.name){
             LoginScreen(
-                //navController = navController
+                navController = navController
             )
         }
 
