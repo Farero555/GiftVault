@@ -6,10 +6,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.giftvault.screens.AuthenticateScreen
+import com.example.giftvault.screens.authentication.AuthenticateScreen
 import com.example.giftvault.screens.HomeScreen
-import com.example.giftvault.screens.LoginScreen
-import com.example.giftvault.screens.SignupScreen
+import com.example.giftvault.screens.authentication.LoginScreen
+import com.example.giftvault.screens.authentication.SignupScreen
 
 @Composable
 fun GiftVaultNavigation() {

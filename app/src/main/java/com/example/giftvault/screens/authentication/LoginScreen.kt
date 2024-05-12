@@ -1,4 +1,4 @@
-package com.example.giftvault.screens
+package com.example.giftvault.screens.authentication
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
