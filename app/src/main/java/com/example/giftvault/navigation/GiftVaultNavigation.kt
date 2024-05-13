@@ -16,14 +16,8 @@ fun GiftVaultNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = GiftVaultScreens.AuthenticationScreen.name
+        startDestination = GiftVaultScreens.LoginScreen.name
     ) {
-
-        composable(GiftVaultScreens.AuthenticationScreen.name) {
-            AuthenticateScreen(
-                navController = navController
-            )
-        }
 
         composable(GiftVaultScreens.LoginScreen.name) {
             LoginScreen(

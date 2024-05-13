@@ -1,19 +1,28 @@
 package com.example.giftvault.screens
 
+import androidx.compose.foundation.Image
+
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.giftvault.ui.theme.Ecru
+import com.example.giftvault.R
+import com.example.giftvault.ui.theme.MetallicBronze
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,6 +43,7 @@ fun HomeScreen(navController: NavController, userId: Int) {
     }
 
     ModalNavigationDrawer(
+        modifier = Modifier,
         drawerState = drawerState,
         drawerContent = {
             DrawerContent()
@@ -43,22 +53,37 @@ fun HomeScreen(navController: NavController, userId: Int) {
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
                 CenterAlignedTopAppBar(
-                    modifier = Modifier.height(42.dp),
+                    modifier = Modifier,
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                        containerColor = Ecru,
+                        containerColor = MetallicBronze,
                         titleContentColor = Color.White
                     ),
-                    title = { Text("GiftVault") },
+                    title = {
+                        Text("Home")
+                    },
                     navigationIcon = {
-                        IconButton(onClick = { toggleDrawer() }) {
+                        IconButton(
+                            onClick = { toggleDrawer() },
+                            colors = IconButtonDefaults.filledIconButtonColors(
+                                contentColor = Color.White
+                            )
+
+                        ) {
                             Icon(
                                 imageVector = Icons.Filled.Menu,
                                 contentDescription = "Menu"
                             )
+
                         }
                     },
                     actions = {
-                        IconButton(onClick = { /* Handle other actions here */ }) {
+                        IconButton(
+                            onClick = { /* Handle other actions here */ },
+                            colors = IconButtonDefaults.filledIconButtonColors(
+                                contentColor = Color.White
+                            )
+
+                        ) {
                             Icon(
                                 imageVector = Icons.Filled.AccountCircle,
                                 contentDescription = "Profile"

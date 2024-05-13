@@ -47,13 +47,13 @@ fun GiftVaultInputText(
         colors = TextFieldDefaults.textFieldColors(
             containerColor = Color.Transparent,
             focusedLabelColor = Color.DarkGray,
-            unfocusedLabelColor = Color.LightGray,
+            unfocusedLabelColor = Color.Gray,
             cursorColor = Color.DarkGray,
             selectionColors = TextSelectionColors(
                 handleColor = Color.DarkGray,
                 backgroundColor = Color.DarkGray
             ),
-            unfocusedIndicatorColor = Color.LightGray,
+            unfocusedIndicatorColor = Color.Gray,
             focusedIndicatorColor = Color.DarkGray
         ),
         maxLines = maxLine,
