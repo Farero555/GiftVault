@@ -11,12 +11,20 @@ import com.example.giftvault.navigation.GiftVaultNavigation
 import com.example.giftvault.ui.theme.GiftVaultTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.dark(
+            statusBarStyle = SystemBarStyle.light(
+                android.graphics.Color.TRANSPARENT,
                 android.graphics.Color.TRANSPARENT
+            ),
+            navigationBarStyle = SystemBarStyle.light(
+                android.graphics.Color.TRANSPARENT,
+                android.graphics.Color.TRANSPARENT,
             )
+
         )
+
         super.onCreate(savedInstanceState)
         Users.initUsers()
         setContent {

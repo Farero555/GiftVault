@@ -1,6 +1,7 @@
 package com.example.giftvault.components
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -24,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
@@ -33,6 +35,7 @@ fun GiftVaultInputText(
     text: String,
     label: String,
     maxLine: Int = 1,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
     onTextChange: (String) -> Unit,
     onImeAction: () -> Unit = {}
 ) {
@@ -46,15 +49,15 @@ fun GiftVaultInputText(
         onValueChange = onTextChange,
         colors = TextFieldDefaults.textFieldColors(
             containerColor = Color.Transparent,
-            focusedLabelColor = Color.DarkGray,
+            focusedLabelColor = if(isSystemInDarkTheme()) Color.LightGray else Color.DarkGray,
             unfocusedLabelColor = Color.Gray,
-            cursorColor = Color.DarkGray,
+            cursorColor = if(isSystemInDarkTheme()) Color.LightGray else Color.DarkGray,
             selectionColors = TextSelectionColors(
-                handleColor = Color.DarkGray,
-                backgroundColor = Color.DarkGray
+                handleColor = if(isSystemInDarkTheme()) Color.LightGray else Color.DarkGray,
+                backgroundColor = if(isSystemInDarkTheme()) Color.LightGray else Color.DarkGray
             ),
             unfocusedIndicatorColor = Color.Gray,
-            focusedIndicatorColor = Color.DarkGray
+            focusedIndicatorColor = if(isSystemInDarkTheme()) Color.LightGray else Color.DarkGray
         ),
         maxLines = maxLine,
         label = {
@@ -75,6 +78,7 @@ fun GiftVaultInputText(
             .onFocusChanged {
                 isTextFieldFocused = it.isFocused
             },
+        visualTransformation = visualTransformation
     )
     BackHandler(enabled = isTextFieldFocused) {
         keyboardController?.hide()

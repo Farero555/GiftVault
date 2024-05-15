@@ -2,6 +2,7 @@ package com.example.giftvault.screens.authentication
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,6 +29,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -39,6 +42,7 @@ import com.example.giftvault.navigation.GiftVaultScreens
 
 @Composable
 fun LoginScreen(navController: NavController){
+
     var usernameInput by remember {
         mutableStateOf("")
     }
@@ -59,33 +63,33 @@ fun LoginScreen(navController: NavController){
                 )
             ),
         contentAlignment = Alignment.Center,
-
     ) {
-
         Image(
-            modifier = Modifier.align(Alignment.TopCenter).padding(top = 30.dp),
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 30.dp),
             painter = painterResource(id = R.drawable.giftvault_logo_transperent),
             contentDescription = ""
         )
-
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                //.height(450.dp)
                 .align(Alignment.BottomCenter),
             colors = CardDefaults.cardColors(
-                containerColor = Color.White
+                containerColor = if(isSystemInDarkTheme()) Color(0xFF121212) else Color.White
+
             ),
             shape = RoundedCornerShape(24.dp),
             elevation = CardDefaults.cardElevation(8.dp)
         ){
             Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .navigationBarsPadding(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-
             ) {
                 Text(
+                    color = if(!isSystemInDarkTheme()) Color(0xFF121212) else Color.White,
                     modifier = Modifier.padding(top = 16.dp),
                     text = "Welcome To GiftVault!",
                     fontSize = 24.sp,
@@ -97,17 +101,18 @@ fun LoginScreen(navController: NavController){
                     modifier = Modifier.padding(top = 12.dp),
                     text = usernameInput,
                     label = "Enter username",
-                    onTextChange = { usernameInput = it },
-                )
+                    onTextChange = { usernameInput = it }
 
+                )
                 Spacer(modifier = Modifier.height(8.dp))
 
                 GiftVaultInputText(
                     modifier = Modifier.padding(bottom = 4.dp),
                     text = passwordInput,
                     label = "Enter password",
-                    onTextChange = { passwordInput = it })
-
+                    onTextChange = { passwordInput = it },
+                    visualTransformation = PasswordVisualTransformation('•')
+                )
                 Row(
                     modifier = Modifier
                         .offset(x = (-70).dp)
@@ -119,12 +124,11 @@ fun LoginScreen(navController: NavController){
                         onCheckedChange = { rememberMe = it }
                     )
                     Text(
+                        color = if(!isSystemInDarkTheme()) Color(0xFF121212) else Color.White,
                         text = "Remember Me",
                         fontSize = 14.sp
-
                     )
                 }
-
                 GVButton(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -139,11 +143,8 @@ fun LoginScreen(navController: NavController){
                     text = "Sign Up",
                     onClick = { navController.navigate(route = GiftVaultScreens.SignupScreen.name) }
                 )
-                Spacer(modifier = Modifier.height(56.dp))
             }
-
         }
-
     }
 }
 
